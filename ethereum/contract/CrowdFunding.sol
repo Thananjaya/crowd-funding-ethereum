@@ -48,6 +48,7 @@ contract CrowdFunding{
     }
     
     function raisingSpendingRequest( string memory description, uint value, address recipient) public managerAccess {
+        require(value < contributionAmount);
         spendingRequest memory newRequest = spendingRequest({
             description: description,
             value: value,
