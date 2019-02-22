@@ -8,7 +8,7 @@ const compiledFactory = require('../ethereum/build/Factory.json');
 
 let crowdFunding;
 let factory;
-let CrowdFundingAddress;
+let crowdFundingAddress;
 let accounts;
 
 
@@ -18,13 +18,17 @@ beforeEach(async () => {
     factory= await new web3.eth.Contract(JSON.parse(compiledFactory.interface))
         .deploy({
             data: compiledFactory.bytecode,
-            arguments: [100]
         })
         .send({
             from: accounts[0],
             gas: 1000000
         });
-    
+
+    await factory.methods.createCrowdFunding('100').send({
+        from: accounts[0],
+        gas: '1000000'
+    });
+
     [crowdFundingAddress] = await factory.methods.getDeployedContractAddresses().call();
     crowdFunding = await new web3.eth.Contract(JSON.parse(compiledCrowdFunding.interface), crowdFundingAddress) 
 

@@ -3,7 +3,7 @@ pragma solidity^0.4.17;
 contract Factory{
     CrowdFunding[] public deployedContractAddresses;
     
-    constructor (uint minimum) public {
+    function createCrowdFunding(uint minimum) public {
         CrowdFunding newContract = new CrowdFunding(minimum, msg.sender);
         deployedContractAddresses.push(newContract);
     }
