@@ -13,7 +13,7 @@ const web3 = new Web3(provider);
 const deploy = async () => {
     const accounts = await web3.eth.getAccounts();
     const result = await new web3.eth.Contract(JSON.parse(compiledFactory.interface))
-        .deploy({ data: compiledFactory.bytecode, arguments: [100] })
+        .deploy({ data: compiledFactory.bytecode })
         .send({ from: accounts[0], gas: "1000000" });
 };
 
