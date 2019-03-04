@@ -10,13 +10,14 @@ class CrowdFundingNew extends Component {
         super(props);
         this.state = {
             weiAmount: null,
-            errorMessage: ''
+            errorMessage: '',
+            loading: false
         }
     }
 
     onSubmit = async () => {
         const accounts = await web3.eth.getAccounts();
-
+        this.setState({loading: true, errorMessage: ''});
         try {
             await instance.methods.createCrowdFunding(this.state.weiAmount).send({
                 from: accounts[0]    
@@ -24,6 +25,7 @@ class CrowdFundingNew extends Component {
         } catch(err) {
             this.setState({errorMessage: err.message})
         }
+        this.setState({loading: false});
         
     }
 
@@ -53,7 +55,8 @@ class CrowdFundingNew extends Component {
                     </Form.Field>
                     { this.state.errorMessage.length > 0 ? this.displayErrorMessage() : null}
                     <Button 
-                        type="submit" 
+                        type="submit"
+                        loading={this.state.loading} 
                         onClick={this.onSubmit}
                         primary
                     > 
