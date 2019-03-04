@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import instance from '../ethereum/web3/factory'; 
+import instance from '../ethereum/web3/factory';
+
 
 class CrowdFundingIndex extends Component {
-
-    static async getInitialProps() {
-        const crowdFundings = await instance.methods.getDeployedContractAddresses().call();
-        return { crowdFundings }
+    static async getInitialProps(){
+        const crowdFunding = await instance.methods.getDeployedContractAddresses().call();
+        
+        return { crowdFunding }
     }
 
     render(){
         return(
-            <div>
-                <h1>Crowd Funding Index</h1>
-                <p>Deployed CrowdFunding address are</p>
-                {this.props.crowdFundings[0]}
-            </div>
+            <p>{this.props.crowdFunding}</p>
         )
     }
 }
