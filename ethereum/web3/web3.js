@@ -4,7 +4,7 @@ let web3;
 
 // checking whether the process is running in the browser or server
 if( typeof window !== 'undefined' && typeof window.web3 !== 'undefined' ) {
-    // process running in the process and browser has metamask
+    // process running in the browser and browser has metamask
     web3 = new Web3(window.web3.currentProvider);
 } else {
     // process is not running in browser or not having the metamask plugin
