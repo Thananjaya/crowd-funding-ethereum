@@ -3,7 +3,7 @@ import Layout from '../../components/layout';
 import instance from '../../ethereum/web3/crowdFunding';
 import web3 from '../../ethereum/web3/web3';
 import { Card, Form, Message, Input, Button, Grid } from 'semantic-ui-react'
-import { Router } from '../../routes';
+import { Router, Link } from '../../routes';
 
 class CrowdFundingDetails extends Component {
     constructor(props){
@@ -56,6 +56,10 @@ class CrowdFundingDetails extends Component {
         )
     }
 
+    redirectToRequests(){
+
+    }
+
     renderCards() {
         const {
             minimumContribution,
@@ -103,6 +107,13 @@ class CrowdFundingDetails extends Component {
                 <Grid>
                     <Grid.Column width={10}>
                         {this.renderCards()}
+                        <Link route={`/cf/${this.props.address}/spending_requests`}>
+                            <a>
+                                <Button primary style={{marginTop: "20px"}}>
+                                    View Spending Requests
+                                </Button>
+                            </a>
+                        </Link>
                     </Grid.Column>
                     <Grid.Column width={6}>
                         <Form>
