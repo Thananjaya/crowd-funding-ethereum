@@ -56,10 +56,6 @@ class CrowdFundingDetails extends Component {
         )
     }
 
-    redirectToRequests(){
-
-    }
-
     renderCards() {
         const {
             minimumContribution,

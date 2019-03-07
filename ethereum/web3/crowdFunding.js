@@ -5,7 +5,7 @@ export default (address) => {
     const instance = new web3.eth.Contract(
         JSON.parse(compiledCrowdFunding.interface),
         address
-    )
+    );
 
-    return instance
+    return instance;
 }

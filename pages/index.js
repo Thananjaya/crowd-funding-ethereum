@@ -12,12 +12,12 @@ class CrowdFundingIndex extends Component {
     }
 
     renderCrowdFundList(){
-        const crowdFunding = this.props.crowdFunding.map((data) => {
+        const crowdFunding = this.props.crowdFundingList.map((data) => {
             return {
                 header: data,
                 description: (
                     <Link route={`cf/${data}`}>
-                        <Button secondary floated="right"> View </Button>
+                        <a>View</a>
                     </Link>
                 ),
                 fluid: true
