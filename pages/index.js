@@ -6,9 +6,9 @@ import { Link } from '../routes';
 
 class CrowdFundingIndex extends Component {
     static async getInitialProps(){
-        const crowdFunding = await instance.methods.getDeployedContractAddresses().call();
+        const crowdFundingList = await instance.methods.getDeployedContractAddresses().call();
         
-        return { crowdFunding }
+        return { crowdFundingList }
     }
 
     renderCrowdFundList(){
