@@ -3,6 +3,7 @@ import Layout from '../../components/layout';
 import instance from '../../ethereum/web3/crowdFunding';
 import web3 from '../../ethereum/web3/web3';
 import { Form, Input, Button, Message} from 'semantic-ui-react';
+import { Router } from '../../routes';
 
 
 class NewRequest extends Component {
@@ -35,7 +36,7 @@ class NewRequest extends Component {
             ).send({
                 from: accounts[0]
             });
-            this.setState({ message: 'Spending Request been raised successfully' });
+            Router.pushRoute(`/cf/${this.props.address}/spending_requests`);
         } catch(err) {
             this.setState({ message: err.message });
         }
