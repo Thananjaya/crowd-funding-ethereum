@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Layout from '../../components/layout';
-import { Button, Form, Input, Message} from 'semantic-ui-react';
 import instance from  '../../ethereum/web3/factory';
 import web3 from  '../../ethereum/web3/web3';
+import { Button, Form, Input, Message} from 'semantic-ui-react';
+import { Router } from '../../routes';
 
 class CrowdFundingNew extends Component {
 
@@ -21,7 +22,8 @@ class CrowdFundingNew extends Component {
         try {
             await instance.methods.createCrowdFunding(this.state.weiAmount).send({
                 from: accounts[0]    
-            })
+            });
+            Router.pushRoute('/');
         } catch(err) {
             this.setState({errorMessage: err.message})
         }
