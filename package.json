@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "dev": "next dev"
+    "dev": "node server.js"
   },
   "author": "Thananjaya Chakravarthy S",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "ganache-cli": "^6.0.3",
     "mocha": "^4.1.0",
     "next": "^4.1.4",
+    "next-routes": "^1.4.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "semantic-ui-react": "^0.85.0",
