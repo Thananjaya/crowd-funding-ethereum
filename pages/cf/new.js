@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Layout from '../../components/layout';
 import instance from  '../../ethereum/web3/factory';
+import crowdFundingInstance from '../../ethereum/web3/crowdFunding';
 import web3 from  '../../ethereum/web3/web3';
 import { Button, Form, Input, Message} from 'semantic-ui-react';
 import { Router } from '../../routes';
@@ -12,7 +13,9 @@ class CrowdFundingNew extends Component {
         this.state = {
             weiAmount: null,
             errorMessage: '',
-            loading: false
+            loading: false,
+            title: '',
+            description: ''
         }
     }
 
@@ -22,6 +25,11 @@ class CrowdFundingNew extends Component {
         try {
             await instance.methods.createCrowdFunding(this.state.weiAmount).send({
                 from: accounts[0]    
+            });
+            const addresses = await instance.methods.getDeployedContractAddresses().call();
+            const crowdFunding = crowdFundingInstance(addresses[addresses.length-1])
+            await crowdFunding.methods.addTitleAndDescription(this.state.title, this.state.description).send({
+                from: accounts[0]
             });
             Router.pushRoute('/');
         } catch(err) {
@@ -45,6 +53,21 @@ class CrowdFundingNew extends Component {
             <Layout>
                 <h3> Represent your project for raising crowd funding </h3>
                 <Form>
+                <Form.Field>
+                        <label>Title</label>
+                        <Input
+                            placeholder="Project Title" 
+                            onChange={(event) => this.setState({ title: event.target.value })}
+                        />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Description</label>
+                        <Input
+                            type="text"
+                            placeholder="Project Description" 
+                            onChange={(event) => this.setState({ description: event.target.value })}
+                        />
+                    </Form.Field>
                     <Form.Field>
                         <label>Minimum Contribution</label>
                         <Input

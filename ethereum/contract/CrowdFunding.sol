@@ -24,6 +24,8 @@ contract CrowdFunding{
     }
     
     spendingRequest[] public requests;
+    string crowdFundingTitle;
+    string crowdFundingDescription;
     address public owner; // the one who looks for funding will be consider as an owner
     uint public minimumContribution; // owner saying that how much is the minimum contribution
     mapping(address => bool) public contributors; // contributors, peoples who contributes to the product. Stored in the form of mapping
@@ -38,6 +40,11 @@ contract CrowdFunding{
     constructor(uint minimum, address creator) public {
         owner = creator;
         minimumContribution = minimum;
+    }
+
+    function addTitleAndDescription(string memory title, string memory description) public managerAccess {
+        crowdFundingTitle = title;
+        crowdFundingDescription = description;
     }
     
     function contribute() public payable {

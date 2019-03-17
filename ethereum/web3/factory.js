@@ -3,7 +3,7 @@ const compiledFactory = require('../build/Factory.json');
 
 const instance = new web3.eth.Contract(
     JSON.parse(compiledFactory.interface),
-    "0x2284fbc41B74937f6Ab89A305e1d2f481947a418"
+    "0xdb79A731FC4a99BA67A257340231b93647AA61A6"
 )
 
 export default instance;

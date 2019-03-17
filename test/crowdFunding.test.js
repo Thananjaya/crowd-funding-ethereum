@@ -21,7 +21,7 @@ beforeEach(async () => {
         })
         .send({
             from: accounts[0],
-            gas: 1000000
+            gas: '1000000'
         });
 
     await factory.methods.createCrowdFunding('100').send({
@@ -39,6 +39,20 @@ describe('Crowd-funding and factory testing', () => {
         assert.ok(factory.options.address);
         assert.ok(crowdFunding.options.address);
     });
+
+    it('adds title and description fro the concern crowd funding project', async () => {
+        const title = "Sample title";
+        const description = "Sample description";
+        try {
+            await crowdFunding.methods.addTitleandDescription(title, description).send({
+                from: accounts[0],
+                value: '1000000'
+            });
+            assert.ok(true)
+        } catch(err) {
+            assert(err)
+        }
+    })
 
     it('crowd funding requester is marked as owner', async () => {
         const owner = await crowdFunding.methods.owner().call();
