@@ -41,11 +41,6 @@ contract CrowdFunding{
         owner = creator;
         minimumContribution = minimum;
     }
-
-    function addTitleAndDescription(string memory title, string memory description) public managerAccess {
-        crowdFundingTitle = title;
-        crowdFundingDescription = description;
-    }
     
     function contribute() public payable {
         require(msg.value >= minimumContribution);

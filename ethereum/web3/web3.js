@@ -9,7 +9,7 @@ if( typeof window !== 'undefined' && typeof window.web3 !== 'undefined' ) {
 } else {
     // process is not running in browser or not having the metamask plugin
     const provider = new Web3.providers.HttpProvider(
-        "https://rinkeby.infura.io/v3/ffd2deb0df864ae299640e5d442c4eaa"
+        // YOUR INFURA PROVIDER API
     );
     web3 = new Web3(provider);
 }

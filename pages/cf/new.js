@@ -26,11 +26,6 @@ class CrowdFundingNew extends Component {
             await instance.methods.createCrowdFunding(this.state.weiAmount).send({
                 from: accounts[0]    
             });
-            const addresses = await instance.methods.getDeployedContractAddresses().call();
-            const crowdFunding = crowdFundingInstance(addresses[addresses.length-1])
-            await crowdFunding.methods.addTitleAndDescription(this.state.title, this.state.description).send({
-                from: accounts[0]
-            });
             Router.pushRoute('/');
         } catch(err) {
             this.setState({errorMessage: err.message})
