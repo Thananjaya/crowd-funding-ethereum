@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
+    "compile": "node ethereum/compile/compile.js",
+    "deploy": "node ethereum/deploy/deploy.js",
     "dev": "node server.js"
   },
   "author": "Thananjaya Chakravarthy S",
